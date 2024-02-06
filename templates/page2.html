@@ -3,6 +3,18 @@
 {% block content %}
 <h1>Welcome to Page 2</h1>
 <form action="/page2_result" method="post">
+    <h2>Select two files:</h2>
+    <select name="file1">
+        {% for file in files %}
+        <option value="{{ file }}">{{ file }}</option>
+        {% endfor %}
+    </select>
+    <select name="file2">
+        {% for file in files %}
+        <option value="{{ file }}">{{ file }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
     <button type="submit">Get Page 2 Result</button>
 </form>
 {% endblock %}
