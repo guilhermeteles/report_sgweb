@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Page 2 result</h1>
+<h1>Page 2 Result</h1>
+<p>Comparison file created: <a href="{{ url_for('serve_comparison_file', filename=comparison_file_name) }}">Download
+        comparison file</a></p>
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from bs4 import BeautifulSoup
 import requests
 import validators
@@ -8,6 +8,10 @@ import time
 app = Flask(__name__)
 
 # Define routes for each page
+@app.route('/comparison_files/<filename>')
+def serve_comparison_file(filename):
+    return send_from_directory('comparison', filename)
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -83,7 +87,9 @@ def page2_result():
         os.makedirs(comparison_folder)
     
     # Save the content of both selected files into a new file in the comparison folder
-    comparison_file_path = os.path.join(comparison_folder, f'comparison_{int(time.time())}.txt')
+    comparison_file_name = f'comparison_{int(time.time())}.txt'
+    comparison_file_path = os.path.join(comparison_folder, comparison_file_name)
+    
     with open(comparison_file_path, 'w') as comparison_file:
         with open(os.path.join('files', file1), 'r') as file1_content:
             comparison_file.write(f'Contents of {file1}:\n')
@@ -93,8 +99,7 @@ def page2_result():
             comparison_file.write(f'Contents of {file2}:\n')
             comparison_file.write(file2_content.read())
     
-    return render_template('page2_result.html', comparison_file_path=comparison_file_path)
-
+    return render_template('page2_result.html', comparison_file_name=comparison_file_name)
 
 
 @app.route('/page3_result', methods=['POST'])
