@@ -1,4 +1,0 @@
-Input URL: https://google.net
-Page Title: Google
-Selected Options:
-Option 2

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, send_from_directory
+from difflib import unified_diff
 from bs4 import BeautifulSoup
 import requests
 import validators
@@ -80,7 +81,7 @@ def page1_result():
 def page2_result():
     file1 = request.form.get('file1')
     file2 = request.form.get('file2')
-    
+
     # Create a folder named 'comparison' if it doesn't exist
     comparison_folder = os.path.join(os.getcwd(), 'comparison')
     if not os.path.exists(comparison_folder):
@@ -89,17 +90,25 @@ def page2_result():
     # Save the content of both selected files into a new file in the comparison folder
     comparison_file_name = f'comparison_{int(time.time())}.txt'
     comparison_file_path = os.path.join(comparison_folder, comparison_file_name)
+
     
+
+    # Read the contents of both selected files
+    with open(os.path.join('files', file1), 'r') as file1_content:
+        file1_lines = file1_content.readlines()
+    with open(os.path.join('files', file2), 'r') as file2_content:
+        file2_lines = file2_content.readlines()
+
+    # Find the differences between the two files
+    differences = list(unified_diff(file1_lines, file2_lines, lineterm=''))
+
+    # Remove header and empty lines from differences
+    differences = [line for line in differences if not line.startswith(('---', '+++')) and line.strip()]
+
     with open(comparison_file_path, 'w') as comparison_file:
-        with open(os.path.join('files', file1), 'r') as file1_content:
-            comparison_file.write(f'Contents of {file1}:\n')
-            comparison_file.write(file1_content.read())
-            comparison_file.write('\n\n')
-        with open(os.path.join('files', file2), 'r') as file2_content:
-            comparison_file.write(f'Contents of {file2}:\n')
-            comparison_file.write(file2_content.read())
-    
-    return render_template('page2_result.html', comparison_file_name=comparison_file_name)
+        comparison_file.write(str(differences))
+
+    return render_template('page2_result.html', differences=differences, comparison_file_name=comparison_file_name)
 
 
 @app.route('/page3_result', methods=['POST'])

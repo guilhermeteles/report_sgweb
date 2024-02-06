@@ -4,4 +4,14 @@
 <h1>Page 2 Result</h1>
 <p>Comparison file created: <a href="{{ url_for('serve_comparison_file', filename=comparison_file_name) }}">Download
         comparison file</a></p>
+{% if differences %}
+<h2>Differences:</h2>
+<ul>
+    {% for line in differences %}
+    <li>{{ line }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No differences found.</p>
+{% endif %}
 {% endblock %}

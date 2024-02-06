@@ -1,25 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
 
 <head>
     <title>Flask App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
+<body class="h-full">
+    <div class="min-h-full">
+        <div class="bg-gray-800 pb-32">
+            <nav x-data="{ open: false }" class="bg-gray-800">
+                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div class="border-b border-gray-700">
+                        <div class="flex h-16 items-center justify-between px-4 sm:px-0">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-8 w-8" id="Camada_1" data-name="SGWEB"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.7 205.37">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #38bdf8;
+                                                    stroke-width: 0px;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <path class="cls-1"
+                                            d="m144.75,205.37H63.94c-35.26,0-63.94-28.69-63.94-63.94s28.69-63.94,63.94-63.94h80.81c35.26,0,63.94,28.69,63.94,63.94s-28.69,63.94-63.94,63.94ZM63.94,100.48c-22.58,0-40.94,18.37-40.94,40.94s18.37,40.94,40.94,40.94h80.81c22.58,0,40.94-18.37,40.94-40.94s-18.37-40.94-40.94-40.94H63.94Z" />
+                                        <rect class="cls-1" x="92.85" y="25.87" width="23" height="63.11" />
+                                        <circle class="cls-1" cx="104.35" cy="25.87" r="25.87" />
+                                        <circle class="cls-1" cx="143.16" cy="141.43" r="12.94" />
+                                        <circle class="cls-1" cx="65.54" cy="141.43" r="12.94" />
+                                    </svg>
+                                </div>
 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/page1">Page 1</a></li>
-            <li><a href="/page2">Page 2</a></li>
-            <li><a href="/page3">Page 3</a></li>
-        </ul>
-    </nav>
+                            </div>
+                            <div class="hidden md:block">
+                                <div class="flex items-baseline space-x-4">
+                                    <a href="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        aria-current="page" x-state:on="Current" x-state:off="Default"
+                                        x-state-description="Current: &quot;bg-gray-900 text-white&quot;, Default: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Home</a>
+                                    <a href="/page1"
+                                        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page1</a>
+                                    <a href="/page2"
+                                        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page2</a>
+                                    <a href="/page3"
+                                        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                        x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page3</a>
 
-    <div>
-        {% block content %}{% endblock %}
+                                </div>
+                            </div>
+                            <div class="-mr-2 flex md:hidden">
+                                <!-- Mobile menu button -->
+                                <button type="button"
+                                    class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                    aria-controls="mobile-menu" @click="open = !open" aria-expanded="false"
+                                    x-bind:aria-expanded="open.toString()">
+                                    <span class="absolute -inset-0.5"></span>
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 block"
+                                        :class="{ 'hidden': open, 'block': !(open) }" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                                    </svg>
+                                    <svg x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 hidden"
+                                        :class="{ 'block': open, 'hidden': !(open) }" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-description="Mobile menu, show/hide based on menu state."
+                    class="border-b border-gray-700 md:hidden" id="mobile-menu" x-show="open" style="display: none;">
+                    <div class="space-y-1 px-2 py-3 sm:px-3">
+                        <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                            aria-current="page" x-state:on="Current" x-state:off="Default"
+                            x-state-description="Current: &quot;bg-gray-900 text-white&quot;, Default: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Home</a>
+                        <a href="/page1"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                            x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page1</a>
+                        <a href="/page2"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                            x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page2</a>
+                        <a href="/page3"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                            x-state-description="undefined: &quot;bg-gray-900 text-white&quot;, undefined: &quot;text-gray-300 hover:bg-gray-700 hover:text-white&quot;">Page3</a>
+
+                    </div>
+
+                </div>
+            </nav>
+            <header class="py-10">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                </div>
+            </header>
+        </div>
+
+        <main class="-mt-32">
+            <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+                <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
+                    <div>
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-
 </body>
 
 </html>

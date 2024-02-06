@@ -1,0 +1,1 @@
+['@@ -1,6 +1,4 @@', '-Input URL: https://google.com\n', '-Page Title: Google\n', '+Input URL: https://extranet.tse.jus.br\n', '+Page Title: Entrar\n', ' Selected Options:\n', ' Option 1\n', '-Option 2\n', '-Option 3\n']
