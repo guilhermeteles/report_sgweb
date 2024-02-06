@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcome to Page 1</h1>
+{% if error_message %}
+<p>{{ error_message }}</p>
+{% endif %}
+<form action="/page1_result" method="post">
+    <input type="text" name="input_value">
+    <br><br>
+    <input type="checkbox" name="option1" value="Option 1"> Option 1
+    <input type="checkbox" name="option2" value="Option 2"> Option 2
+    <input type="checkbox" name="option3" value="Option 3"> Option 3
+    <br><br>
+    <button type="submit">Get Page 1 Result</button>
+</form>
+{% endblock %}

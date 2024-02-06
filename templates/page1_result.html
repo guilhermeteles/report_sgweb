@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Page 1 Result</h1>
+<p>Input URL: {{ input_value }}</p>
+<p>Title: {{ page_title }}</p>
+<p>Selected Options:</p>
+<ul>
+    {% if option1 %}
+    <li>Option 1</li>
+    {% endif %}
+    {% if option2 %}
+    <li>Option 2</li>
+    {% endif %}
+    {% if option3 %}
+    <li>Option 3</li>
+    {% endif %}
+</ul>
+{% endblock %}
